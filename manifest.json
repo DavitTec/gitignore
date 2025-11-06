@@ -1,0 +1,92 @@
+{
+  "name": "davit-gitignore",
+  "version": "0.1.0",
+  "_comment_version": "Sourced from .env. Do not edit manually.",
+  "templates_dir": "/opt/davit/lib/gitignore",
+  "_comment_templates": "Managed template library. Keys are lowercase lookup names.",
+  "templates": {
+    "c++": {
+      "file": "C++.gitignore",
+      "category": "languages",
+      "sha256": "b99fecfaf8b9744ee7748f1e719c9d93ac11862032eff7107bbcab60faf54a04",
+      "_comment": "Checksum verifies integrity. Do not modify manually."
+    }
+,
+    "c": {
+      "file": "C.gitignore",
+      "category": "languages",
+      "sha256": "1d12c3e3e1d5a30836fc5c5349701638765cd2601a356f2117104e15c555780d",
+      "_comment": "Checksum verifies integrity. Do not modify manually."
+    }
+,
+    "go": {
+      "file": "Go.gitignore",
+      "category": "languages",
+      "sha256": "63a6bdc727e45c5811e6a6d664205d2a07948f03881839831c2fa92434509da2",
+      "_comment": "Checksum verifies integrity. Do not modify manually."
+    }
+,
+    "hugo": {
+      "file": "Hugo.gitignore",
+      "category": "languages",
+      "sha256": "40c3ebd49119adc242c9813a7d7ea3caf5da76dcc299303e9ae79c30a63bb246",
+      "_comment": "Checksum verifies integrity. Do not modify manually."
+    }
+,
+    "java": {
+      "file": "Java.gitignore",
+      "category": "languages",
+      "sha256": "affbdc2a83b7d656b98cb2f77f6c33e8ce8221919ea1a50d803b19647588f07d",
+      "_comment": "Checksum verifies integrity. Do not modify manually."
+    }
+,
+    "latex": {
+      "file": "LaTeX.gitignore",
+      "category": "languages",
+      "sha256": "f57d7c8ac068c86293d225e40ea04d790ef74a1c45ed6ea8faba8eb42a5f3632",
+      "_comment": "Checksum verifies integrity. Do not modify manually."
+    }
+,
+    "node": {
+      "file": "Node.gitignore",
+      "category": "languages",
+      "sha256": "8381a31c2a56690ba395653a6cd71b6f378683e0925dc9eea595c853c47757fe",
+      "_comment": "Checksum verifies integrity. Do not modify manually."
+    }
+,
+    "python": {
+      "file": "Python.gitignore",
+      "category": "languages",
+      "sha256": "605915eaeeec6b0680f28426d46a99d6bb824f219f01632eb0166bcba3505a91",
+      "_comment": "Checksum verifies integrity. Do not modify manually."
+    }
+,
+    "rust": {
+      "file": "Rust.gitignore",
+      "category": "languages",
+      "sha256": "a38caa829ecdc7fdc18ad40bdb9d7e3da08b93cd712a558aabf524ac6e36037e",
+      "_comment": "Checksum verifies integrity. Do not modify manually."
+    }
+,
+    "davit": {
+      "file": "DAVIT.gitignore",
+      "category": "meta",
+      "sha256": "5e6313b4504f244bac93186f4b5a291fe5827f85655dc4af6d6ea00bb7b97519",
+      "_comment": "Checksum verifies integrity. Do not modify manually."
+    }
+,
+    "linux": {
+      "file": "Linux.gitignore",
+      "category": "os",
+      "sha256": "b89ffa3ea066d00090cb108b6b7f74261146ddd80ec9c177d2d71b3a8938304b",
+      "_comment": "Checksum verifies integrity. Do not modify manually."
+    }
+,
+    "vscode": {
+      "file": "VScode.gitignore",
+      "category": "tools",
+      "sha256": "ec4bd75286c66a14163ec22ca61f13e725d01a81b1e371da09a7c96087f0c120",
+      "_comment": "Checksum verifies integrity. Do not modify manually."
+    }
+  }
+}
