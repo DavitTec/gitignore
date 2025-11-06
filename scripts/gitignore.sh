@@ -9,8 +9,9 @@
 # Version:        0.0.2
 # Status:         development
 # Created:        2025-11-03 23:44:32
-# Updated:        2025-11-03 23:44:32
+# Updated:        2025-11-06 21:00:00
 # UUID:           67edad03-556a-44ec-adb5-13dab353ea59
+# Alias:          giti 
 # $Id: code-style v0.1.4 2025/11/04 18:00:00
 # Style:          code-style v0.1.4
 #==============================================================================:
@@ -30,16 +31,17 @@
  SCRIPT_NAME="$(basename "$0")"
  SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
  VERSION="0.0.2"
- UUID="67edad03-556a-44ec-adb5-13dab353ea59"
  LOG_DIR="${LOG_DIR:-${SCRIPT_DIR}/../logs}"
  LOG_FILE="${LOG_FILE:-${LOG_DIR}/${SCRIPT_NAME%.sh}.log}"
-readonly  SCRIPT_DIR VERSION LOG_DIR LOG_FILE UUID
+readonly  SCRIPT_DIR VERSION LOG_DIR LOG_FILE
 mkdir -p "$LOG_DIR"
 
 #------------------------------------------------------------------------------:
 # Load .env variables
 #------------------------------------------------------------------------------:
-
+if [ -f .env ]; then
+    source .env
+fi 
 
 #------------------------------------------------------------------------------:
 # LOGGER
