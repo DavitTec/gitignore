@@ -6,8 +6,14 @@
 # Version: 0.1.0
 # Strict template verification enforced
 #==============================================================================
-
-set -euo pipefail
+#------------------------------------------------------------------------------:
+# SHELLCHECK DIRECTIVES
+#------------------------------------------------------------------------------:
+# shellcheck disable=SC2155,SC1091,SC1090,SC2016
+# Notes:
+#   These warnings are disabled for structural templates.
+#------------------------------------------------------------------------------:
+#set -euo pipefail
 
 #------------------------------------------------------------------------------
 # Load .env
@@ -19,6 +25,16 @@ VERSION=${VERSION:-0.1.0}
 SRC_DIR="./lib/gitignore"
 DEV_MANIFEST="./manifest.json"
 INSTALL_MANIFEST="/opt/davit/etc/manifest.json"
+
+#------------------------------------------------------------------------------:
+# Logging (fallback if davit-logger not present)
+#------------------------------------------------------------------------------:
+if ! source "/opt/davit/bin/davit-logger.sh" &>/dev/null; then
+  log_info()  { printf "[INFO] %s\n" "$*"; }
+  log_warn()  { printf "[WARN] %s\n" "$*" >&2; }
+  log_error() { printf "[ERROR] %s\n" "$*" >&2; }
+  log_success(){ printf "[OK] %s\n" "$*"; }
+fi
 
 #------------------------------------------------------------------------------
 # Function: compute SHA256
@@ -72,13 +88,13 @@ echo "}" >> "$manifest"
 # Save dev manifest
 #------------------------------------------------------------------------------
 cp "$manifest" "$DEV_MANIFEST"
-echo "[INFO] Dev manifest generated at $DEV_MANIFEST"
+log_info "Dev manifest generated at $DEV_MANIFEST"
 
 #------------------------------------------------------------------------------
 # Save install manifest
 #------------------------------------------------------------------------------
 mkdir -p "$(dirname "$INSTALL_MANIFEST")"
 cp "$manifest" "$INSTALL_MANIFEST"
-echo "[INFO] Install manifest generated at $INSTALL_MANIFEST"
+log_info "Install manifest generated at $INSTALL_MANIFEST"
 
 rm -f "$manifest"

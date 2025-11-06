@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [unreleased]
 
+### ⚙️ Miscellaneous Tasks
+
+- Update templates with Category (c79b92c…)
+
+
+- Update changelog (41ab034…)
+
+
+
 ### 📚 Documentation
 
 - Update Docs (c562d89…)
