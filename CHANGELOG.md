@@ -5,7 +5,7 @@ All notable changes to the ["https://github.com/DavitTec/gitignore"](https://git
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [unreleased]
+## [0.1.1] - 2025-11-06 ([v0.1.1](https://github.com/DavitTec/gitignore/releases/tag/v0.1.1))
 
 ### ⚙️ Miscellaneous Tasks
 
@@ -13,6 +13,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 - Update changelog (41ab034…)
+
+
+
+### 🐛 Bug Fixes
+
+- Update INSTALL to inc. templates (93e3045…)
 
 
 
