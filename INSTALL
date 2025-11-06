@@ -1,0 +1,159 @@
+#!/usr/bin/env bash
+#==============================================================================:
+# Script Name:    INSTALL.sh
+# Description:    INSTALL scripts - Deploy scripts to 
+# Author:         david
+# Project:        gitignore
+# Domain:         davit
+# Author:         David Mullins
+# License:        MIT
+# Created:        2025-11-03 23:45:19
+# UUID:           2bd8ec65-2e43-4fa8-9745-ec2b52d02c6c
+# Version:        0.0.5
+# Status:         stable
+# Updated:        2025-11-03 21:15:00
+# $Id: code-style v0.1.4 2025/11/04 18:00:00
+# Style:          code-style v0.1.4
+#==============================================================================:
+#------------------------------------------------------------------------------:
+# SHELLCHECK DIRECTIVES
+#------------------------------------------------------------------------------:
+# shellcheck disable=SC2155,SC1091,SC1090,SC2016
+# Notes:
+#   These warnings are disabled for structural templates.
+#------------------------------------------------------------------------------:
+set -euo pipefail
+
+#------------------------------------------------------------------------------:
+# Load .env if available
+#------------------------------------------------------------------------------:
+if [[ -f ".env" ]]; then
+  # shellcheck disable=SC1091
+  source ".env"
+fi
+
+# Default fallbacks if .env not set
+BIN_DIR="${BIN_DIR:-/usr/local/bin}"
+LIB_DIR="${LIB_DIR:-/opt/davit/lib/gitignore}"
+SCRIPTS_DIR="${SCRIPTS_DIR:-./scripts}"
+TEMPLATE_SRC_DIR="${TEMPLATE_SRC_DIR:-./lib/gitignore}"
+
+#------------------------------------------------------------------------------:
+# Logging (fallback if davit-logger not present)
+#------------------------------------------------------------------------------:
+if ! source "/opt/davit/bin/davit-logger.sh" &>/dev/null; then
+  log_info()  { printf "[INFO] %s\n" "$*"; }
+  log_warn()  { printf "[WARN] %s\n" "$*" >&2; }
+  log_error() { printf "[ERROR] %s\n" "$*" >&2; }
+  log_success(){ printf "[OK] %s\n" "$*"; }
+fi
+
+#------------------------------------------------------------------------------:
+# Ensure directories exist
+#------------------------------------------------------------------------------:
+ensure_paths() {
+  mkdir -p "$BIN_DIR"
+  mkdir -p "$LIB_DIR"
+}
+
+#------------------------------------------------------------------------------:
+# Install scripts from ./scripts → $BIN_DIR
+#------------------------------------------------------------------------------:
+install_scripts() {
+  log_info "Installing scripts to $BIN_DIR"
+  for script in "$SCRIPTS_DIR"/*.sh; do
+    filename="$(basename "$script")"
+    cp "$script" "$BIN_DIR/$filename"
+    chmod +x "$BIN_DIR/$filename"
+    log_success "Installed $filename"
+  done
+}
+
+#------------------------------------------------------------------------------:
+# Install gitignore templates → $LIB_DIR
+#------------------------------------------------------------------------------:
+install_templates() {
+  log_info "Installing gitignore templates to $LIB_DIR"
+  cp "$TEMPLATE_SRC_DIR"/*.gitignore "$LIB_DIR"/
+  log_success "Templates installed"
+}
+
+#------------------------------------------------------------------------------:
+# Uninstall scripts
+#------------------------------------------------------------------------------:
+uninstall_scripts() {
+  log_info "Uninstalling scripts from $BIN_DIR"
+  for script in "$SCRIPTS_DIR"/*.sh; do
+    filename="$(basename "$script")"
+    rm -f "$BIN_DIR/$filename"
+    log_warn "Removed $filename"
+  done
+}
+
+#------------------------------------------------------------------------------:
+# Uninstall templates
+#------------------------------------------------------------------------------:
+uninstall_templates() {
+  log_info "Uninstalling gitignore templates from $LIB_DIR"
+  rm -rf "$LIB_DIR"
+  log_warn "Removed template directory"
+}
+
+#------------------------------------------------------------------------------:
+# MAIN
+#------------------------------------------------------------------------------:
+usage() {
+  cat <<EOF
+Usage: ./INSTALL [option]
+
+Options:
+  -i, --install       Install scripts + templates
+  -u, --uninstall     Remove installed scripts + templates
+  -h, --help          Show this help
+
+BIN_DIR:     $BIN_DIR
+LIB_DIR:     $LIB_DIR
+SCRIPTS_DIR: $SCRIPTS_DIR
+TEMPLATE_SRC_DIR: $TEMPLATE_SRC_DIR
+EOF
+}
+
+main() {
+  ensure_paths
+
+  case "${1:-}" in
+    -i|--install)
+      install_scripts
+      install_templates
+      log_success "INSTALL completed successfully."
+      ;;
+    -u|--uninstall)
+      uninstall_scripts
+      uninstall_templates
+      log_success "UNINSTALL completed successfully."
+      ;;
+    -h|--help|"")
+      usage
+      ;;
+    *)
+      log_error "Unknown option: $1"
+      usage
+      exit 1
+      ;;
+  esac
+}
+# === ENTRY POINT =============================================================:
+main "\$@"
+#==============================================================================:
+# FOOTER
+#------------------------------------------------------------------------------:
+# TODO(INSTALL): [Func]: [F001]:Fix uninstall script function to check for script existence before removal.
+# TODO(INSTALL): [Func]: [F002]:Add logging for uninstall script function.
+# TODO(INSTALL): [Func]: [F003]:feat: add version check before installing scripts.
+# TODO(INSTALL): [Doc]: [D001]:Update script header with more detailed description.
+# TODO(INSTALL): [Func]: [F004]:feat: add to include bash alias insert/delete
+# TODO(INSTALL): [Test]: [T001]:Create unit tests for install and uninstall functions.
+# TODO(INSTALL): [Func]: [F005]:Enhance install script to handle dependencies.
+# TODO(INSTALL): [Doc]: [D002]:docs: add README.md.
+# TODO(INSTALL): [Lib]: [T001]:feat: Implement install src: ./lib/templates" for gitignore templates.
+#==============================================================================:
