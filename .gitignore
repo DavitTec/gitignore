@@ -1,0 +1,12 @@
+# Davit
+vscode.sh
+.vscode/
+requirements.yaml
+docs/hist/*_hist.md 
+tests
+temp
+logs/
+.env
+archives
+
+
