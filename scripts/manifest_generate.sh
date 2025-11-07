@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #==============================================================================
-# Script: manifest-generate.sh
+# Script: manifest_generate.sh
 # Description: Generates readable manifest.json for gitignore templates.
 # Author: David / DavitTec
 # Version: 0.1.0
